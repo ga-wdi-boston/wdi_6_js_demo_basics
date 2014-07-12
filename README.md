@@ -67,7 +67,7 @@ A common theme in JavaScript is "things you can easily get wrong and have your p
 
 ## Basic Input/Output
 
-Since we won't be interacting with web pages for a little while, we can use `console.log` or `alert` as the JavaScript equivalents of `puts`. There is also a JavaScript equivalent to `gets`, which is `prompt`. Just like in Ruby, these are mostly used for temporary debugging purposes and you'd never see them on a production web site.
+Since we won't be interacting with web pages for a little while, we can use `console.log` or `alert` as the JavaScript equivalents of `puts`. There is also a JavaScript equivalent to `gets`, which is `prompt`. As in Ruby, these are mostly used for temporary debugging purposes and you'd never see them on a production web site.
 
 ```js
 console.log('Here I am');
@@ -76,7 +76,7 @@ var name = prompt('What is your name?');
 alert('Hello there, ' + name);
 ```
 
-`console.log`, `alert`, and `prompt` are all built-in **functions**, the JavaScript equivalent of Ruby's methods. We'll learn more about them soon, but do note that *the parentheses are required* when calling a function &ndash; even if you don't pass any parameters!
+`console.log`, `alert`, and `prompt` are all built-in **functions**, the JavaScript term for methods. We'll learn more about them soon, but note that *the parentheses are required* when calling a function &ndash; even if you don't pass any parameters!
 
 ## Control Flow
 
@@ -183,7 +183,7 @@ var purple = colors.pop();
 colors.sort(); // now they're in alphabetical order
 ```
 
-Like all objects, arrays have *properties* and *methods*. We can access properties like `.length` directly, but methods like `.sort()` must be called with parentheses, even if we're not passing any arguments.
+Like all objects, arrays can have *functions* (or methods) defined on them, like `.sort()`, that we can call. Functions must always be called with parentheses, even if we're not passing any arguments. Note `length` is not a function &ndash; instead it is a *property* that is accessed directly, and we cannot use parentheses to call it. The MDN reference will tell you whether something is a property or a function.
 
 ### Iterating
 
@@ -203,4 +203,55 @@ The three semicolon-separated components of a `for` loop are:
 * An expression evaluated at the start of each iteration &ndash; if `false`, the loop is terminated
 * A statement that will be executed at the start of each iteration
 
+Since `for` loops are awkward and error-prone, it's usually preferable to use the `forEach` function instead. However, this requires defining an anonymous function, which we'll get into later, so don't worry about the syntax for now.
+
+```js
+var colors = ['red', 'green', 'blue'];
+
+colors.forEach(function(color){
+  console.log(color + ' is one of my favorite colors');
+});
+
+// Can also receive the index, like Ruby's each.with_index
+colors.forEach(function(color, index){
+  console.log(color + ' is favorite color number ' + index);
+});
+```
+
+As you might imagine, there are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
+
 ## Hashes?
+
+**There is no such thing as a hash in JavaScript.** That being said, examine the following code:
+
+```js
+var friend = {
+  name: 'Dan',
+  age: 26,
+  colors: ['purple', 'blue', 'teal'],
+  pets: [
+    { name: 'Fattykins', species: 'cat', age: 6 },
+    { name: 'Reginald', species: 'hamster', age: 2 }
+  ]
+};
+
+var secondColor = friend['colors'][1];
+var firstPetAge = friend['pets'][0]['age'];
+friend['colors'].push('indigo');
+```
+
+Sure looks a lot like a hash, doesn't it? In fact, it's a generic [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)! As we mentioned above, objects in JavaScript can have *properties*. In this example, `name`, `age`, and so on are not "keys", but *property names*. Each property has a value, like the keys in a Ruby hash have values.
+
+Some important differences to note:
+
+* Although the property names look like symbols from Ruby, they actually represent strings &ndash; there is no such thing as a symbol in JavaScript. When we access the properties using bracket notation, we need to use strings (`friend['pets']`).
+* This is the *only* syntax to define object properties &ndash; there is no "hash rocket".
+* Bracket notation is not the only way we can access object properties. Take a look:
+
+```js
+var secondColor = friend.colors[1];
+var firstPetAge = friend.pets[0].age;
+friend.colors.push('indigo');
+```
+
+This style is preferred over the bracket style where possible. It should also look familiar: We used the same syntax to get the `.length` of an array, which we said was a property.
