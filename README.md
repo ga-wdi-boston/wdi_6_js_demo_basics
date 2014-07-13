@@ -20,7 +20,7 @@ There is no "terminal" in the browser, but there is something called the **conso
 
 Like Ruby, in JavaScript everything is an object. Unlike Ruby, in JavaScript there is no such thing as a "class" &ndash; each object stands alone, and can have properties and behaviors unique to it. We can still create something that looks and acts a lot like a class, but we'll get into this in a later lesson.
 
-There are some special objects in JavaScript called "primitives", also known as the standard [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures). Try typing the following lines into either your browser console or `node`, and changing the values to see what happens.
+There are some special objects in JavaScript called "primitives", also known as the standard [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures). Try typing the following lines into either your browser console or `node`.
 
 ```js
 // Unlike in Ruby there is no special distinction between numbers with and
@@ -203,7 +203,7 @@ The three semicolon-separated components of a `for` loop are:
 * An expression evaluated at the start of each iteration &ndash; if `false`, the loop is terminated
 * A statement that will be executed at the start of each iteration
 
-Since `for` loops are awkward and error-prone, it's usually preferable to use the `forEach` function instead. However, this requires defining an anonymous function, which we'll get into later, so don't worry about the syntax for now.
+Since `for` loops are awkward and error-prone, it's usually preferable to use the `forEach` function instead. This requires defining an anonymous function, which we'll get into later.
 
 ```js
 var colors = ['red', 'green', 'blue'];
@@ -218,11 +218,11 @@ colors.forEach(function(color, index){
 });
 ```
 
-As you might imagine, there are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
+There are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
 
 ## Hashes?
 
-**There is no such thing as a hash in JavaScript.** That being said, examine the following code:
+**There is no such thing as a hash in JavaScript.** That said, consider the following:
 
 ```js
 var friend = {
@@ -240,11 +240,11 @@ var firstPetAge = friend['pets'][0]['age'];
 friend['colors'].push('indigo');
 ```
 
-Sure looks a lot like a hash, doesn't it? In fact, it's a generic [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)! As we mentioned above, objects in JavaScript can have *properties*. In this example, `name`, `age`, and so on are not "keys", but *property names*. Each property has a value, like the keys in a Ruby hash have values.
+Looks like a hash, right? Nope! [It's actually a plain object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects). As we mentioned above, objects in JavaScript can have *properties*. In this example, `name`, `age`, and so on are not "keys" but *property names*. Each property has a value, like the keys in a Ruby hash have values.
 
 Some important differences to note:
 
-* Although the property names look like symbols from Ruby, they actually represent strings &ndash; there is no such thing as a symbol in JavaScript. When we access the properties using bracket notation, we need to use strings (`friend['pets']`).
+* Though the property names look like Ruby symbols, they're actually an alternate syntax for strings &ndash; there is no such thing as a symbol in JavaScript.
 * This is the *only* syntax to define object properties &ndash; there is no "hash rocket".
 * Bracket notation is not the only way we can access object properties. Take a look:
 
@@ -254,4 +254,33 @@ var firstPetAge = friend.pets[0].age;
 friend.colors.push('indigo');
 ```
 
-This style is preferred over the bracket style where possible. It should also look familiar: We used the same syntax to get the `.length` of an array, which we said was a property.
+This style is preferred over the bracket style where possible. It should also look familiar: We used the same syntax to get the `.length` of an array, which we mentioned was a property.
+
+### Operations
+
+Plain objects in JavaScript are extremely minimal and have virtually no functions defined on them (unlike Ruby hashes, which have dozens!). We can at least iterate over the properties of any object using a `for...in` loop:
+
+```js
+for(var property in friend) {
+  console.log("My friend's " + property + " is " + friend[property]);
+}
+```
+
+And we can remove properties of any object using the `delete` operator:
+
+```js
+console.log(friend.age); // 26
+delete friend.age;
+console.log(friend.age); // undefined
+```
+
+Since these are plain objects and not hashes, two objects are only considered equal if they are actually the same object (even if we compare with `==`):
+
+```js
+var friend1 = { name: 'Dan', age: 26 };
+var friend2 = { name: 'Dan', age: 26 };
+
+console.log(friend1 === friend2); // false
+friend2 = friend1;
+console.log(friend1 === friend2); // true
+```
