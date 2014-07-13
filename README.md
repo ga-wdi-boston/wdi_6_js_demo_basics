@@ -166,6 +166,10 @@ switch(year) {
 
 Note that `case` blocks are *not* enclosed in braces, and each one also needs a `break` statement at the end &ndash; otherwise code execution will "fall through" to the next block and keep on going! Thankfully `switch` uses the threequals for comparison, but due to its quirks and inflexibility, you don't see it that often in real-world programs.
 
+## Lab 1
+
+Working in pairs, write a JavaScript version of the [Guess the Number](https://github.com/ga-wdi-boston/wdi_1_ruby_hw_number_guess) assignment. We might not have time to get all the specifications done, but you should at least have a prompt that asks the user for a single guess and tells them whether it was correct, low, or high. It's not cheating to look at your Ruby code, though at this point you may want to disown it!
+
 ## Arrays
 
 [JavaScript arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) work mostly the same as Ruby arrays.
@@ -176,11 +180,16 @@ var colors = ['red', 'green', 'blue'];
 var green = colors[1];
 var colorsCount = colors.length;
 var indexOfBlue = colors.indexOf('blue');
+var lastColor = colors[colors.length - 1]; // we can't use negative indexes
 
 colors.push('purple');
 var purple = colors.pop();
 
 colors.sort(); // now they're in alphabetical order
+
+// These should be familiar from Ruby
+var newColors = 'blue, orange, yellow'.split(', ');
+var joinedColors = newColors.join(' and '); // 'blue and orange and yellow'
 ```
 
 Like all objects, arrays can have *functions* (or methods) defined on them, like `.sort()`, that we can call. Functions must always be called with parentheses, even if we're not passing any arguments. Note `length` is not a function &ndash; instead it is a *property* that is accessed directly, and we cannot use parentheses to call it. The MDN reference will tell you whether something is a property or a function.
@@ -219,6 +228,10 @@ colors.forEach(function(color, index){
 ```
 
 There are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
+
+## Lab 2
+
+Working in pairs, revisit [this Ruby array lab](https://github.com/ga-wdi-boston/wdi_1_ruby_lab_arrays/blob/master/lab1-days.md) in JavaScript. You'll definitely need to make use of both the MDN documentation and your Google-fu!
 
 ## Hashes?
 
@@ -284,3 +297,7 @@ console.log(friend1 === friend2); // false
 friend2 = friend1;
 console.log(friend1 === friend2); // true
 ```
+
+## Lab 3
+
+Working in pairs, follow the prompts in `alice.js`. [This may look familiar](https://github.com/ga-wdi-boston/wdi_1_ruby_demo_hashes/blob/master/employment_lab.rb). As with the previous lab, you'll need to do some research outside of what we covered!
