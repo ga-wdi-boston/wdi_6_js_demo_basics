@@ -40,20 +40,50 @@ var alice = {
 
 // Show the name of the first company Alice worked for.
 // (note: employment history is ordered by most to least recent)
+var history = alice.employmentHistory;
+console.log(history[history.length - 1].name);
 
 // Show the name of the last company Alice worked for.
+console.log(history[0].name);
 
 // Show the name of Alice's most recent manager.
+console.log(history[0].manager);
 
 // Change this manager's name and show it again.
+history[0].manager = 'Esteban Smith';
+console.log(history[0].manager);
 
 // Show Alice's street address in the same format you'd use to send a letter.
+console.log(
+  alice.address.street + '\n' +
+  alice.address.city + ", " +
+  alice.address.state + " " +
+  alice.address.zipCode
+);
+
+// ...or with property iteration
+var addressParts = [];
+for(var property in alice.address) {
+  addressParts.push(alice.address[property]);
+}
+console.log(addressParts.join(', '));
 
 // Change the name of the most recent company Alice worked for,
 // and change her position to "JavaScript Developer".
+var mostRecentJob = alice.employmentHistory[0];
+mostRecentJob.name = 'Blueberry Express';
+mostRecentJob.title = 'JavaScript Developer';
 
 // Calculate and show the number of days alice worked at each company.
 // (note: subtracting dates will get you a time difference in milliseconds!)
+alice.employmentHistory.forEach(function(entry){
+  var millisecondsWorked = entry.endDate - entry.startDate;
+  var daysWorked = Math.round(millisecondsWorked / 1000 / 60 / 60 / 24);
+  console.log('Worked at ' + entry.name + ' for ' + daysWorked + ' days');
+});
 
 // For each position in Alice's employment history, display a sentence
 // in the format "Alice made <salary> as a <job title> at <company name>".
+alice.employmentHistory.forEach(function(entry){
+  console.log('Alice made ' + entry.salary + ' as a ' + entry.title + ' at ' + entry.name);
+});
