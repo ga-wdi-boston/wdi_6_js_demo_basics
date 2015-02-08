@@ -1,3 +1,5 @@
+![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
+
 # JavaScript Basics
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) is a high-level programming language like Ruby, but with a very different syntax and different ways of dealing with objects. It is also the only language understood by web browsers, so JavaScript is crucial in writing web applications that respond immediately to user actions, without having to wait for a server to send back a whole new HTML page.
@@ -6,13 +8,13 @@
 
 When developing in Ruby, we'd run code files by typing `ruby some_file.rb`. We *can* do something similar with JavaScript by typing `node some_file.js`. This runs the file through [NodeJS](http://nodejs.org/), a framework that can run JavaScript outside of a web browser. This is useful when developing JavaScript applications that run on a server &ndash; but since we'll mostly be using JavaScript in the browser, we'll rarely use this method.
 
-* **Try it:** Examine the contents of `testrun.js`. Then type `node testrun.js` in your terminal and you should see "It works!"
+* **Try it:** Examine the contents of `app/js/testrun.js`. Then type `node testrun.js` in your terminal and you should see "It works!"
 
 Browsers run JavaScript when they see a `<script>` tag in a web page that points to the URL of a JavaScript file. The browser will make a separate request to download the file, run it, then proceed with parsing the rest of the page.
 
 There is no "terminal" in the browser, but there is something called the **console** that shows output and errors from JavaScript programs. It also lets us type in and run JavaScript code one line at a time, like Ruby's `pry`.
 
-* **Try it:** Examine the contents of `testrun.html`. Then open this file in your browser. Press `Cmd+Opt+I` (Mac) or `Ctrl+Shift+I` (Linux) to open the console, and you should see "It works!"
+* **Try it:** Examine the contents of `app/testrun.html`. Then open this file in your browser. Press `Cmd+Opt+I` (Mac) or `Ctrl+Shift+I` (Linux) to open the console (depending on which browser you're using), and you should see "It works!"
 
 *Note:* If you type `node` in your terminal without specifying a filename, it will let you enter and run JavaScript one line at a time just like the browser console.
 
@@ -20,36 +22,98 @@ There is no "terminal" in the browser, but there is something called the **conso
 
 Like Ruby, in JavaScript everything is an object. Unlike Ruby, in JavaScript there is no such thing as a "class" &ndash; each object stands alone, and can have properties and behaviors unique to it. We can still create something that looks and acts a lot like a class, but we'll get into this in a later lesson.
 
-There are some special objects in JavaScript called "primitives", also known as the standard [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures). Try typing the following lines into either your browser console or `node`.
+There are some special objects in JavaScript called "primitives", also known as the standard [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures).
 
-```js
-// Unlike in Ruby there is no special distinction between numbers with and
-// without decimal points. They are all just "numbers".
+The latest ECMAScript standard defines seven data types:
+
+* Six data types that are primitives:
+  * Number
+  * String
+  * Boolean
+  * Undefined
+  * Null
+  * Symbol (new in ECMAScript 6)
+* and Object
+
+## Dynamic Typing
+
+JavaScript is a loosely typed or a dynamic language. That means you don't have to declare the type of a variable ahead of time. The type will get determined automatically while the program is being processed. That also means that you can have the same variable as different types:
+
+```javascript
+var foo = 42;    // foo is a Number now
+var foo = "bar"; // foo is a String now
+var foo = true;  // foo is a Boolean now
+```
+
+## Numbers
+
+**In `app/js/app.js` follow along and write this code.**
+
+```javascript
+'use strict';
+
+/* NUMBERS
+———————————————————————————————————————————————————
+Unlike in Ruby there is no special distinction between numbers with and
+without decimal points. They are all just "numbers".  */
+
 var currentLevel = 17;
 var price = 1499.99;
 var fiveMinutes = 60 * 5; // all the basic math operations work
 var threeHalves = 3 / 2; // this results in 1.5 -- no weird "integer division"
-
 price = 1299.99; // only the first assignment needs a `var`
 price += 100; // this kind of shortcut still works
 
-// Unlike in Ruby there is no difference between single quotes and double
-// quotes... since JavaScript has no string interpolation. Strings are also
-// "immutable", meaning we can't modify them in-place (no shoveling!)
-var greeting = 'Hello there!';
-var firstName = "Alex";
-var lastName = "Grant";
-var myName = firstName + ' ' + lastName; // clunky, but it's the only way
+/*  There is only 1 integer that has two representations: 0 is represented
+as -0 and +0. ("0" is an alias for +0).
 
-// Like in Ruby, we have the booleans true and false.
-// We also have nil, but here it's called "null".
+*/
+
+var infinity = 42 / +0;
+var negativeInfinity = 42 / -0;
+```
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
+
+## Strings
+
+**In `app/js/app.js` add this code.**
+
+```javascript
+/* STRINGS
+———————————————————————————————————————————————————
+Unlike in Ruby there is no difference between single quotes and double
+quotes... since JavaScript has no string interpolation. Strings are also
+"immutable", meaning we can't modify them in-place (no shoveling!)  */
+
+var greeting = 'Hello there!';
+var firstName = "Jason";
+var lastName = "Wharff";
+var myName = firstName + ' ' + lastName; // clunky, but it's the only way
+```
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
+
+## Booleans
+
+**In `app/js/app.js` add this code.**
+
+```javascript
+/*  BOOLEANS
+———————————————————————————————————————————————————
+Like in Ruby, we have the booleans true and false. */
+
 var excited = true;
 var testMode = false;
-var result = null;
 
 var excitedlyTesting = excited && testMode; // boolean && and || are here
 var calm = !excited; // boolean "not" is also here
+```
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
 
+## Undefined
+
+**In `app/js/app.js` add this code.**
+
+```javascript
 // Unlike in Ruby, we have an extra nil-like value called "undefined". It's
 // what you'll get if you access a variable that's not assigned yet, or call
 // a function that doesn't return anything.
@@ -57,50 +121,132 @@ var mystery = undefined;
 var spooky; // This does the same thing as above! The value is "undefined"
 ```
 
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
+
+## Null
+
+
+**In `app/js/app.js` add this code.**
+
+```javascript
+/*  NULL
+———————————————————————————————————————————————————
+The value null is a JavaScript literal representing null or an "empty" value, 
+i.e. no object value is present. It is one of JavaScript's primitive values.
+We also have nil, but in JS it's called "null". A value that carries no value.
+Like undefined, but defined (not automatically assigned).
+It is falsy.  */
+var result = null; // the variable `result` is defined, but it's value is null.
+console.log(typeof undefined);
+
+```
+
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
+
+
 We already have some notable syntax differences from Ruby:
 
 * Variable and function names use `lowerCamelCase` rather than `snake_case`. This is a much weaker convention in JavaScript than snake case in Ruby &ndash; although it's the style used by the language itself, many JavaScript developers use snake case anyway.
 * Lines of code usually end in a semicolon. We *can* leave these out, but JavaScript will be left to guess where they should be inserted, and sometimes it guesses wrong. The rules for when to use a semicolon are hard to remember, but your JSHint plugin for Sublime Text will steer you right.
 * The first time we assign a variable (and *only* the first time), we must prefix the assignment with `var`. This is known as "declaring" the variable. As with semicolons, if you don't do this your program will still work *sometimes*, but not always. We'll get into why this is when we talk about functions.
 
-A common theme in JavaScript is "things you can easily get wrong and have your program usually still work, but sometimes not". Attention to detail is your ally when writing JavaScript.
+A common theme in JavaScript is "things you can easily get wrong and have your program usually still work, but sometimes not". **Attention to detail is your ally when writing JavaScript.**
 
-## Basic Input/Output
-
-Since we won't be interacting with web pages for a little while, we can use `console.log` or `alert` as the JavaScript equivalents of `puts`. There is also a JavaScript equivalent to `gets`, which is `prompt`. As in Ruby, these are mostly used for temporary debugging purposes and you'd never see them on a production web site.
-
-```js
-console.log('Here I am');
-
-var name = prompt('What is your name?');
-alert('Hello there, ' + name);
-```
-
-`console.log`, `alert`, and `prompt` are all built-in **functions**, the JavaScript term for methods. We'll learn more about them soon, but note that *the parentheses are required* when calling a function &ndash; even if you don't pass any parameters!
 
 ## Control Flow
 
-```js
-var holyNumber = prompt('What number did you count to?');
-if(holyNumber > 3) {
-  alert('Four shalt thou not count. Five is right out.');
-} else if(holyNumber < 3) {
-  alert('Count neither one nor two, excepting that thou then proceedest to three.');
-} else {
-  alert('Throw the holy hand grenade!');
+**In `app/js/app.js` add this code.**
+
+```javascript
+/*  Control Flow in Javascript
+———————————————————————————————————————————————————
+Important differences from Ruby:
+  - Conditions must be enclosed in parentheses.
+  - Code blocks are always enclosed in braces. There is no `end` in JavaScript.
+  - The "else-if" syntax is two separate words, `else if`, rather than `elsif`.
+  - There is no `unless` in JavaScript. Use the "not" operator (`!`) instead.   */
+
+var holyNumber = function(holyNumber){
+  if(holyNumber > 3) {
+    return 'Four shalt thou not count. Five is right out.';
+  } else if(holyNumber < 3) {
+    return 'Count neither one nor two, excepting that thou then proceedest to three.';
+  } else if(holyNumber === 3) {
+    return 'Throw the holy hand grenade!';
+  } else {
+    return 'World ends';
+  }
+};
+
+holyNumber('4'); // 'Four shalt thou not count. Five is right out.'
+holyNumber(4); // 'Four shalt thou not count. Five is right out.'
+holyNumber('2'); // 'Count neither one nor two, excepting that thou then proceedest to three.'
+holyNumber(2); // 'Count neither one nor two, excepting that thou then proceedest to three.'
+holyNumber('3'); // 'World ends'
+holyNumber(3); // 'Throw the holy hand grenade!'
+
+```
+
+**Run `grunt test`. Then look at the tests on lines 106–119. Note the difference in datatypes passed into the function call. Some are strings, some are numbers, but Javascript converts the datatypes when the ">" or "<" are used.**
+
+
+### Less-Used Flow Control
+
+JavaScript also has `while` loops (but no `until` loops).
+
+**There are no tests for while loops. If you're interested in testing this code, run `grunt serve` in the root of your repo, then uncomment this code in index.html**
+
+```javascript
+var input = '';
+while(input !== 'stop') {
+  input = prompt('Enter "stop" to cut it out');
 }
 ```
 
-Important differences from Ruby:
+Instead of `case`/`when`, JavaScript has `switch`/`case` (just to trip you up).
 
-* Conditions must be enclosed in parentheses.
-* Code blocks are always enclosed in braces. There is no `end` in JavaScript.
-* The "else-if" syntax is two separate words, `else if`, rather than `elsif`.
-* There is no `unless` in JavaScript. Use the "not" operator (`!`) instead.
+**In `app/js/app.js` add this code.**
 
-### Loose vs. Strict
+```javascript
+/*  Switch/Case statements
+———————————————————————————————————————————————————
+Note that `case` blocks are *not* enclosed in braces,
+and each one also needs a `break` statement at the end &ndash;
+otherwise code execution will "fall through" to the next
+block and keep on going! Thankfully `switch` uses the
+threequals for comparison, but due to its quirks and
+inflexibility, you don't see it that often in real-world programs.
+*/
 
-Notice above that even though `holyNumber` is a string, we can use the `>` and `<` operators to compare it with numbers. This is because most JavaScript [comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators), **including `==`**, are "loose" &ndash; meaning JavaScript will try to convert both sides of the operator to the same data type before evaluating. This has some counter-intuitive consequences:
+var yearbook = function(year){
+  switch(year) {
+    case 'freshman':
+      return 'cannon fodder';
+      break;
+    case 'sophomore':
+      return 'mildly respectable';
+      break;
+    case 'junior':
+      return 'some influence';
+      break;
+    case 'senior':
+      return 'phenomenal cosmic power';
+      break;
+    default:
+      return 'mysterious stranger'
+      break;
+  }
+};
+```
+
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
+
+
+## Loose vs. Strict equality operators
+
+Notice above that even though `holyNumber` is a string, we can use the `>` and `<` operators to compare it with numbers. This is because most JavaScript [comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators), **including `==`**, are "loose" &ndash; meaning JavaScript will try to convert both sides of the operator to the same data type before evaluating. This has some counter-intuitive consequences.
+
+**In `app/js/app.js` add this code.**
 
 ```js
 // All of these are true
@@ -129,54 +275,28 @@ There is also a "strict" not-equal operator, `!==`. Unfortunately, there are no 
 3 === '3' // false
 1 !== '1' // true
 ```
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
 
-### Less-Used Flow Control
 
-JavaScript also has `while` loops (but no `until` loops).
-
-```js
-var input = '';
-while(input !== 'stop') {
-  input = prompt('Enter "stop" to cut it out');
-}
-```
-
-Instead of `case`/`when`, JavaScript has `switch`/`case` (just to trip you up).
-
-```js
-var year = 'sophomore';
-switch(year) {
-  case 'freshman':
-    console.log('cannon fodder');
-    break;
-  case 'sophomore':
-    console.log('mildly respectable');
-    break;
-  case 'junior':
-    console.log('some influence');
-    break;
-  case 'senior':
-    console.log('phenomenal cosmic power');
-    break;
-  default:
-    console.log('mysterious stranger')
-    break;
-}
-```
-
-Note that `case` blocks are *not* enclosed in braces, and each one also needs a `break` statement at the end &ndash; otherwise code execution will "fall through" to the next block and keep on going! Thankfully `switch` uses the threequals for comparison, but due to its quirks and inflexibility, you don't see it that often in real-world programs.
-
-## Lab 1
-
-Working in pairs, write a JavaScript version of the [Guess the Number](https://github.com/ga-wdi-boston/wdi_1_ruby_hw_number_guess) assignment. We might not have time to get all the specifications done, but you should at least have a prompt that asks the user for a single guess and tells them whether it was correct, low, or high. It's not cheating to look at your Ruby code, though at this point you may want to disown it!
 
 ## Arrays
 
 [JavaScript arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) work mostly the same as Ruby arrays.
 
-```js
-var colors = ['red', 'green', 'blue'];
+**In `app/js/app.js` add this code.**
 
+```javascript
+/*  Arrays
+———————————————————————————————————————————————————
+Like all objects, arrays can have *functions* (or methods) 
+defined on them, like `.sort()`, that we can call. Functions 
+must always be called with parentheses, even if we're not 
+passing any arguments. Note `length` is not a function &ndash; 
+instead it is a *property* that is accessed directly, and we 
+cannot use parentheses to call it. The MDN reference will 
+tell you whether something is a property or a function. */
+
+var colors = ['red', 'green', 'blue'];
 var green = colors[1];
 var colorsCount = colors.length;
 var indexOfBlue = colors.indexOf('blue');
@@ -192,13 +312,13 @@ var newColors = 'blue, orange, yellow'.split(', ');
 var joinedColors = newColors.join(' and '); // 'blue and orange and yellow'
 ```
 
-Like all objects, arrays can have *functions* (or methods) defined on them, like `.sort()`, that we can call. Functions must always be called with parentheses, even if we're not passing any arguments. Note `length` is not a function &ndash; instead it is a *property* that is accessed directly, and we cannot use parentheses to call it. The MDN reference will tell you whether something is a property or a function.
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
 
-### Iterating
+### Iterating through an array
 
 In Ruby we avoid `for` loops in favor of methods like `each` or `map`, but in JavaScript they are seen frequently for simple iteration.
 
-```js
+```javascript
 var colors = ['red', 'green', 'blue'];
 
 for(var i = 0; i < colors.length; i++) {
@@ -229,9 +349,6 @@ colors.forEach(function(color, index){
 
 There are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
 
-## Lab 2
-
-Working in pairs, revisit [this Ruby array lab](https://github.com/ga-wdi-boston/wdi_1_ruby_lab_arrays/blob/master/lab1-days.md) in JavaScript. You'll definitely need to make use of both the MDN documentation and your Google-fu!
 
 ## Hashes?
 
@@ -298,6 +415,33 @@ friend2 = friend1;
 console.log(friend1 === friend2); // true
 ```
 
+
+# Removing I/O in favor of TDD
+
+## Basic Input/Output
+
+Since we won't be interacting with web pages for a little while, we can use `console.log` or `alert` as the JavaScript equivalents of `puts`. There is also a JavaScript equivalent to `gets`, which is `prompt`. As in Ruby, these are mostly used for temporary debugging purposes and you'd never see them on a production web site.
+
+```js
+console.log('Here I am');
+
+var name = prompt('What is your name?');
+alert('Hello there, ' + name);
+```
+
+`console.log`, `alert`, and `prompt` are all built-in **functions**, the JavaScript term for methods. We'll learn more about them soon, but note that *the parentheses are required* when calling a function &ndash; even if you don't pass any parameters!
+
+# LABS
+
+## Lab 1
+
+Working in pairs, write a JavaScript version of the [Guess the Number](https://github.com/ga-wdi-boston/wdi_1_ruby_hw_number_guess) assignment. We might not have time to get all the specifications done, but you should at least have a prompt that asks the user for a single guess and tells them whether it was correct, low, or high. It's not cheating to look at your Ruby code, though at this point you may want to disown it!
+
+## Lab 2
+
+Working in pairs, revisit [this Ruby array lab](https://github.com/ga-wdi-boston/wdi_1_ruby_lab_arrays/blob/master/lab1-days.md) in JavaScript. You'll definitely need to make use of both the MDN documentation and your Google-fu!
+
 ## Lab 3
 
 Working in pairs, follow the prompts in `alice.js`. [This may look familiar](https://github.com/ga-wdi-boston/wdi_1_ruby_demo_hashes/blob/master/employment_lab.rb). As with the previous lab, you'll need to do some research outside of what we covered!
+
