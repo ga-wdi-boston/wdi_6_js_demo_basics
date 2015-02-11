@@ -106,12 +106,12 @@ var yearbook = function(year){
 
 /*  Arrays
 ———————————————————————————————————————————————————
-Like all objects, arrays can have *functions* (or methods) 
-defined on them, like `.sort()`, that we can call. Functions 
-must always be called with parentheses, even if we're not 
-passing any arguments. Note `length` is not a function &ndash; 
-instead it is a *property* that is accessed directly, and we 
-cannot use parentheses to call it. The MDN reference will 
+Like all objects, arrays can have *functions* (or methods)
+defined on them, like `.sort()`, that we can call. Functions
+must always be called with parentheses, even if we're not
+passing any arguments. Note `length` is not a function &ndash;
+instead it is a *property* that is accessed directly, and we
+cannot use parentheses to call it. The MDN reference will
 tell you whether something is a property or a function. */
 
 var colors = ['red', 'green', 'blue'];
@@ -128,6 +128,77 @@ colors.sort(); // now they're in alphabetical order
 // These should be familiar from Ruby
 var newColors = 'blue, orange, yellow'.split(', ');
 var joinedColors = newColors.join(' and '); // 'blue and orange and yellow'
+
+
+/*  Iterating through arrays
+———————————————————————————————————————————————————
+In Ruby we avoid `for` loops in favor of methods like
+`each` or `map`, but in JavaScript they are seen frequently
+for simple iteration.
+*/
+var colors = ['red', 'green', 'blue'];
+var tmpColors = [];
+for(var i = 0; i < colors.length; i++) {
+  tmpColors.push(colors[i] + ' is one of my favorite colors');
+}
+
+/*
+The three semicolon-separated components of a `for` loop are:
+- A statement that will be executed once before the first iteration
+- An expression evaluated at the start of each iteration &ndash; if `false`, the loop is terminated
+- A statement that will be executed at the start of each iteration
+
+Since `for` loops are awkward and error-prone, it's usually
+preferable to use the `forEach` function instead. This requires
+defining an anonymous function, which we'll get into later.
+`forEach` can also receive the index and the array iterating upon as params
+There are also `map` and `reduce` functions that do the same thing
+as their Ruby equivalents.
+*/
+var tempColors = [];
+colors.forEach(function(color, index, array){
+  tempColors.push(color + ' is favorite color number ' + index);
+});
+
+
+
+/*  JS Objects
+———————————————————————————————————————————————————
+Objects in JavaScript can have *properties*.
+In this example, `name`, `age`, and so on are not
+"keys" but *property names*. Each property has a
+value, like the keys in a Ruby hash have values.  */
+var friend = {
+  name: 'Dan',
+  age: 26,
+  colors: ['purple', 'blue', 'teal'],
+  pets: [
+    { name: 'Fattykins', species: 'cat', age: 6 },
+    { name: 'Reginald', species: 'hamster', age: 2 }
+  ]
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

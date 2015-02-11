@@ -316,16 +316,39 @@ var joinedColors = newColors.join(' and '); // 'blue and orange and yellow'
 
 ### Iterating through an array
 
-In Ruby we avoid `for` loops in favor of methods like `each` or `map`, but in JavaScript they are seen frequently for simple iteration.
+**In `app/js/app.js` add this code.**
 
 ```javascript
+/*  Iterating through arrays
+———————————————————————————————————————————————————
+In Ruby we avoid `for` loops in favor of methods like
+`each` or `map`, but in JavaScript they are seen frequently
+for simple iteration.
+*/
 var colors = ['red', 'green', 'blue'];
-
+var tmpColors = [];
 for(var i = 0; i < colors.length; i++) {
-  console.log(colors[i] + ' is one of my favorite colors');
+  tmpColors.push(colors[i] + ' is one of my favorite colors');
 }
-```
 
+/*  The three semicolon-separated components of a `for` loop are:
+- A statement that will be executed once before the first iteration
+- An expression evaluated at the start of each iteration &ndash; if `false`, the loop is terminated
+- A statement that will be executed at the start of each iteration
+
+Since `for` loops are awkward and error-prone, it's usually
+preferable to use the `forEach` function instead. This requires
+defining an anonymous function, which we'll get into later.
+`forEach` can also receive the index and the array iterating upon as params
+There are also `map` and `reduce` functions that do the same thing
+as their Ruby equivalents.  */
+
+var tempColors = [];
+colors.forEach(function(color, index, array){
+  tempColors.push(color + ' is favorite color number ' + index);
+});
+
+```
 The three semicolon-separated components of a `for` loop are:
 
 * A statement that will be executed once before the first iteration
@@ -334,24 +357,14 @@ The three semicolon-separated components of a `for` loop are:
 
 Since `for` loops are awkward and error-prone, it's usually preferable to use the `forEach` function instead. This requires defining an anonymous function, which we'll get into later.
 
-```js
-var colors = ['red', 'green', 'blue'];
-
-colors.forEach(function(color){
-  console.log(color + ' is one of my favorite colors');
-});
-
-// Can also receive the index, like Ruby's each.with_index
-colors.forEach(function(color, index){
-  console.log(color + ' is favorite color number ' + index);
-});
-```
-
 There are also `map` and `reduce` functions that do the same thing as their Ruby equivalents.
 
 
-## Hashes?
+**Run `grunt test`. If there are any failing tests go back and fix your code.**
 
+## JS Objects
+
+**In `app/js/app.js` add this code.**
 **There is no such thing as a hash in JavaScript.** That said, consider the following:
 
 ```js
@@ -365,16 +378,15 @@ var friend = {
   ]
 };
 
-var secondColor = friend['colors'][1];
-var firstPetAge = friend['pets'][0]['age'];
-friend['colors'].push('indigo');
 ```
-
+<!-- var secondColor = friend['colors'][1];
+var firstPetAge = friend['pets'][0]['age'];
+friend['colors'].push('indigo'); -->
 Looks like a hash, right? Nope! [It's actually a plain object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects). As we mentioned above, objects in JavaScript can have *properties*. In this example, `name`, `age`, and so on are not "keys" but *property names*. Each property has a value, like the keys in a Ruby hash have values.
 
 Some important differences to note:
 
-* Though the property names look like Ruby symbols, they're actually an alternate syntax for strings &ndash; there is no such thing as a symbol in JavaScript.
+* Though the property names look like Ruby symbols, they're actually an alternate syntax for strings.
 * This is the *only* syntax to define object properties &ndash; there is no "hash rocket".
 * Bracket notation is not the only way we can access object properties. Take a look:
 

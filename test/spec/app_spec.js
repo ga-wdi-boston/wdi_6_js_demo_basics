@@ -157,9 +157,9 @@ describe('Javascript Basics',function(){
 
   describe('Javascript Arrays',function(){
     it('uses a 0-based index',function(){
-      expect(colors[0]).toEqual('blue');
+      expect(colors[0]).toEqual('red');
       expect(colors[1]).toEqual('green');
-      expect(colors[2]).toEqual('red');
+      expect(colors[2]).toEqual('blue');
     });
     it('can be operated upon with functions defined on them',function(){
       // adds 'purple' to the end of the colors array
@@ -185,9 +185,26 @@ describe('Javascript Basics',function(){
       expect(newColors).toEqual(jasmine.any(Array));
       expect(newColors).toContain('blue');
     });
+
+    describe('and Iterating through them',function(){
+      it('using a for loop',function(){
+        expect(tmpColors).toEqual(jasmine.any(Array));
+        expect(tmpColors).toContain("blue is one of my favorite colors");
+      });
+      it('using forEach',function(){
+        expect(tempColors).toEqual(jasmine.any(Array));
+        expect(tempColors).toContain('blue is favorite color number 2');
+      });
+    });
   });
 
-
+  describe('Javascript Objects',function(){
+    it('have properties and values',function(){
+      expect(friend).toEqual(jasmine.any(Object));
+      expect(friend.colors[1]).toEqual('blue');
+      expect(friend.pets[0].age).toEqual(6);
+    });
+  });
 
 });
 
