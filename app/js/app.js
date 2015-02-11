@@ -179,6 +179,17 @@ var friend = {
 };
 
 
+/*  Operating on Objects
+———————————————————————————————————————————————————
+Plain objects in JavaScript are extremely minimal and
+have virtually no functions defined on them (unlike Ruby
+hashes, which have dozens!). We can at least iterate
+over the properties of any object using a `for...in` loop:
+*/
+var propArray = []
+for(var prop in friend) {
+  propArray.push("My friend's " + prop + " is " + friend[prop]);
+}
 
 
 

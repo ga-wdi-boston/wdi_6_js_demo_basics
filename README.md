@@ -365,6 +365,7 @@ There are also `map` and `reduce` functions that do the same thing as their Ruby
 ## JS Objects
 
 **In `app/js/app.js` add this code.**
+
 **There is no such thing as a hash in JavaScript.** That said, consider the following:
 
 ```js
@@ -398,19 +399,28 @@ friend.colors.push('indigo');
 
 This style is preferred over the bracket style where possible. It should also look familiar: We used the same syntax to get the `.length` of an array, which we mentioned was a property.
 
-### Operations
+### Operations on Objects
 
-Plain objects in JavaScript are extremely minimal and have virtually no functions defined on them (unlike Ruby hashes, which have dozens!). We can at least iterate over the properties of any object using a `for...in` loop:
+**In `app/js/app.js` add this code.**
 
-```js
-for(var property in friend) {
-  console.log("My friend's " + property + " is " + friend[property]);
+```javascript
+
+/*  Operating on Objects
+———————————————————————————————————————————————————
+Plain objects in JavaScript are extremely minimal and
+have virtually no functions defined on them (unlike Ruby
+hashes, which have dozens!). We can at least iterate
+over the properties of any object using a `for...in` loop:
+*/
+var propArray = []
+for(var prop in friend) {
+  propArray.push("My friend's " + prop + " is " + friend[prop]);
 }
 ```
 
 And we can remove properties of any object using the `delete` operator:
 
-```js
+```javascript
 console.log(friend.age); // 26
 delete friend.age;
 console.log(friend.age); // undefined
@@ -426,7 +436,7 @@ console.log(friend1 === friend2); // false
 friend2 = friend1;
 console.log(friend1 === friend2); // true
 ```
-
+<!-- 
 
 # Removing I/O in favor of TDD
 
@@ -457,3 +467,4 @@ Working in pairs, revisit [this Ruby array lab](https://github.com/ga-wdi-boston
 
 Working in pairs, follow the prompts in `alice.js`. [This may look familiar](https://github.com/ga-wdi-boston/wdi_1_ruby_demo_hashes/blob/master/employment_lab.rb). As with the previous lab, you'll need to do some research outside of what we covered!
 
+ -->
