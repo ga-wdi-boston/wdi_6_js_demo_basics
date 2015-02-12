@@ -4,6 +4,26 @@
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) is a high-level programming language like Ruby, but with a very different syntax and different ways of dealing with objects. It is also the only language understood by web browsers, so JavaScript is crucial in writing web applications that respond immediately to user actions, without having to wait for a server to send back a whole new HTML page.
 
+## Objectives
+
+By the end of this lesson, students should be able to:
+
+- List the Javascript datatypes
+- Manipulate JavaScript datatypes
+- Write conditionals to manage control flow in javascript
+- Describe the difference between loose and strict equality
+- Read and write javascript arrays
+- Read and write javascript objects
+
+## Instructions
+
+* Fork, clone your fork
+* `cd` into your local copy
+* run `npm install`
+* run `bower install`
+* run `grunt test`
+* Follow along with the README and make the tests pass.
+
 ## Running JavaScript
 
 When developing in Ruby, we'd run code files by typing `ruby some_file.rb`. We *can* do something similar with JavaScript by typing `node some_file.js`. This runs the file through [NodeJS](http://nodejs.org/), a framework that can run JavaScript outside of a web browser. This is useful when developing JavaScript applications that run on a server &ndash; but since we'll mostly be using JavaScript in the browser, we'll rarely use this method.
