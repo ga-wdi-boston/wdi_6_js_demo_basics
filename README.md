@@ -40,20 +40,51 @@ There is no "terminal" in the browser, but there is something called the **conso
 
 ## Data Types
 
-Like Ruby, in JavaScript everything is an object. Unlike Ruby, in JavaScript there is no such thing as a "class" &ndash; each object stands alone, and can have properties and behaviors unique to it. We can still create something that looks and acts a lot like a class, but we'll get into this in a later lesson.
+In Javascript there are no classes, *at least until ES6*. But, there are ways to create structures that look and behave like classes. We'll look at this later. 
 
-There are some special objects in JavaScript called "primitives", also known as the standard [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures).
+In Javascript there are [data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures). There are two kinds of data types, primitive types and reference types.
 
-The latest ECMAScript standard defines seven data types:
 
-* Six data types that are primitives:
-  * Number
-  * String
-  * Boolean
-  * Undefined
-  * Null
-  * Symbol (new in ECMAScript 6)
-* and Object
+## Primitive Types.
+There are five Primitives, one more coming in ES6. *Note: many languages, like Java, have primitives*.  
+  
+* number  
+* string  
+* boolean  
+* undefined  
+* null  
+* symbol (new in ECMAScript 6)  
+
+Some common properties of primitives are:
+
+* The are immutable, they can't be changed.
+* You can't add properties to primitives. 
+* They are [passed by value](app/js/pass_by_ref.js).
+
+
+## Reference Types.
+There are a number of Reference Types in javascript. Some of these are: 
+
+* Object. All other reference types inherit from this type.  
+* Array 
+* Date
+* Regex
+* Math
+* Function. 
+* Primitive Wrapper Types (Number, String and Boolean)
+
+Some common properties of reference type are:
+
+* The are mutable, they CAN be changed.
+* You CAN add properties to them.
+* They are [passed by reference](app/js/pass_by_ref.js).
+
+### Primitive Wrapper Types
+There are three [primitive wrapper types](http://adripofjavascript.com/blog/drips/javascripts-primitive-wrapper-objects.html), Number String and Boolean. Any time you attempt to access a property on a primitive, JavaScript will implicitly create a temporary wrapper object.
+
+### Function Types.
+All functions are actually instances of a Function type. So, in Javascript Functions can have properties and methods. *This makes javascript functions very powerful*.
+
 
 ## Dynamic Typing
 
