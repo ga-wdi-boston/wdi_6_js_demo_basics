@@ -4,26 +4,41 @@
 ———————————————————————————————————————————————————
 Unlike in Ruby there is no special distinction between numbers with and
 without decimal points. They are all just "numbers".  */
+var currentLevel = 3;
+var price = 1400;
+var fiveMinutes = 300;
+var threeHalves = 1.5;
 
-
+var infinity = Infinity;
+var negativeInfinity = -Infinity;
 /* STRINGS
 ———————————————————————————————————————————————————
 Unlike in Ruby there is no difference between single quotes and double
 quotes... since JavaScript has no string interpolation. Strings are also
 "immutable", meaning we can't modify them in-place (no shoveling!)  */
 
+var greeting = 'hello';
+var firstName = 'Annie';
+var lastName = 'Bourgeois';
+var myName = (firstName + " " + lastName);
 
 /*  BOOLEANS
 ———————————————————————————————————————————————————
 Like in Ruby, we have the booleans true and false. */
 
+var excited = true;
+var testMode = false;
+var excitedlyTesting = (excited && testMode);
+var calm = false;
 
 /* UNDEFINED
 ———————————————————————————————————————————————————
 Unlike in Ruby, we have an extra nil-like value called "undefined". It's
 what you'll get if you access a variable that's not assigned yet, or call
 a function that doesn't return anything.*/
-
+var mystery;
+// Not sure how to do this in a function
+var spooky;
 
 
 /*  NULL
@@ -31,7 +46,7 @@ a function that doesn't return anything.*/
 We also have nil, but in JS it's called "null". A value that carries no value.
 Like undefined, but defined (not automatically assigned).
 It is falsy.  */
-
+var result = null;
 
 
 /*  Control Flow in Javascript
@@ -41,7 +56,6 @@ Important differences from Ruby:
   - Code blocks are always enclosed in braces. There is no `end` in JavaScript.
   - The "else-if" syntax is two separate words, `else if`, rather than `elsif`.
   - There is no `unless` in JavaScript. Use the "not" operator (`!`) instead.   */
-
 
 
 /*  Switch/Case statements
@@ -66,7 +80,7 @@ instead it is a *property* that is accessed directly, and we
 cannot use parentheses to call it. The MDN reference will
 tell you whether something is a property or a function. */
 
-
+var colors = ['red', 'green', 'blue'];
 
 /*  Iterating through arrays
 ———————————————————————————————————————————————————

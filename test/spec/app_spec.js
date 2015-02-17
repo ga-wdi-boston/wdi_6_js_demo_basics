@@ -35,7 +35,7 @@ describe('Javascript Basics',function(){
         expect(lastName).toEqual(jasmine.any(String))
       });
       it('can be built using concatenation',function(){
-        expect(myName).toEqual('Jason Wharff');
+        expect(myName).toEqual('Annie Bourgeois');
       });
     });
 
