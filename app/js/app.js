@@ -179,7 +179,14 @@ Objects in JavaScript can have *properties*.
 In this example, `name`, `age`, and so on are not
 "keys" but *property names*. Each property has a
 value, like the keys in a Ruby hash have values.  */
-
+var friend = {
+  colors: ['black', 'blue'],
+  pets:
+    [
+      { name: 'Bear', age: 6},
+      { name: 'Reginald', age: 2}
+    ]
+};
 
 /*  Operating on Objects
 ———————————————————————————————————————————————————
