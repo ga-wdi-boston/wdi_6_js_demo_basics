@@ -20,9 +20,9 @@ Unlike in Ruby there is no difference between single quotes and double
 quotes... since JavaScript has no string interpolation. Strings are also
 "immutable", meaning we can't modify them in-place (no shoveling!)  */
 var greeting = 'Hello there!';
-var firstName = "Jason";
-var lastName = "Wharrf";
-var myName = firstName + ' ' + lastName;
+var firstName = 'Jason';
+var lastName = 'Wharff';
+var myName = (firstName + " " + lastName);
 
 /*  BOOLEANS
 ———————————————————————————————————————————————————
