@@ -195,7 +195,16 @@ have virtually no functions defined on them (unlike Ruby
 hashes, which have dozens!). We can at least iterate
 over the properties of any object using a `for...in` loop:
 */
+var character = {
+  name: "My friend's name is Dan",
+  age: 29,
+  favColor: "blue",
+  dogName: "Bear"
+}
 
+var propArray = Object.keys(character).map(function(key) {
+    return character[key];
+});
 
 
 
