@@ -99,7 +99,7 @@ var yearbook = function(year){
       return 'phenomenal cosmic power';
       break;
     default:
-      return 'mysterious stanger'
+      return 'mysterious stranger'
       break;
   }
 };
