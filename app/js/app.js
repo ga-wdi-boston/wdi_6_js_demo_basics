@@ -61,7 +61,7 @@ var holyNumber = function(holyNumber) {
   if(holyNumber > 3) {
     return 'Four shalt thou not count. Five is right out.';
   } else if(holyNumber < 3) {
-    return 'Count neither one nor two, expecting that thou then proceedest to three.';
+    return 'Count neither one nor two, excepting that thou then proceedest to three.';
   } else if(holyNumber === 3) {
     return 'Throw the holy hand grenade!';
   } else {
